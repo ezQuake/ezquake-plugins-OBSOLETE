@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dummyplugin", "..\dummyplugin\dummyplugin\dummyplugin.vcproj", "{6BF05582-EDEC-4D38-BE7A-9020D7EF6001}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "namemaker", "..\namemaker\namemaker\namemaker.vcproj", "{6EC04F50-DB93-480C-9AFB-7A8F76DF60D5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -13,6 +15,10 @@ Global
 		{6BF05582-EDEC-4D38-BE7A-9020D7EF6001}.Debug|Win32.Build.0 = Debug|Win32
 		{6BF05582-EDEC-4D38-BE7A-9020D7EF6001}.Release|Win32.ActiveCfg = Release|Win32
 		{6BF05582-EDEC-4D38-BE7A-9020D7EF6001}.Release|Win32.Build.0 = Release|Win32
+		{6EC04F50-DB93-480C-9AFB-7A8F76DF60D5}.Debug|Win32.ActiveCfg = Debug|Win32
+		{6EC04F50-DB93-480C-9AFB-7A8F76DF60D5}.Debug|Win32.Build.0 = Debug|Win32
+		{6EC04F50-DB93-480C-9AFB-7A8F76DF60D5}.Release|Win32.ActiveCfg = Release|Win32
+		{6EC04F50-DB93-480C-9AFB-7A8F76DF60D5}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
