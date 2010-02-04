@@ -1,0 +1,16 @@
+Basic infrastructure for plugins is in plugin.c, plugin.h and qvm_api.c. You should not need to change these files.
+The plugin.def is a list of functions to be exported in the plugin's library.
+
+To create a plugin, create a copy of the dummyplugin plugin. All you then need to edit is the dummyplugin.c.
+
+Start in the int Plug_Init(int *args) function, which is the only mandatory function you need to have in your plugin.
+Here first of all the Plug_InitHooks is called, which is only a sequence of Plug_Export calls.
+
+Hook or hooking means that your plugin tells the main program to call given plugin's function when an event occurs.
+
+So far available hooks are:
+Tick ExecuteCommand ConExecuteCommand MenuEvent UpdateVideo SbarBase SbarSupplement SbarOverlay ConnectionlessClientPacket ServerMessageEvent ChatMessageEvent CenterPrintMessage SpellCheckMaskedText
+
+If you need another type of hook, you need to code it into the client code first.
+
+After registering of hooks some typical initialization of the plugin starts, like registering own Quake variables and commands.

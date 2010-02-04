@@ -1,5 +1,17 @@
+/**
+	\file
+
+	\brief
+	The Dummy Plugin. To test and demonstrate the plugins functionality
+	and to give a base for creating new plugins.
+
+	\author
+	johnnycz
+**/
+
 #include "../plugin.h"
 
+// handler of ExecuteCommand event
 int Plug_ExecuteCommand(int *args)
 {
 	char cmd[256];
@@ -20,11 +32,31 @@ int Plug_ExecuteCommand(int *args)
 	return 0;
 }
 
+// handler of Tick event
+int Plug_Tick(int *args)
+{
+	currenttime = args[0];
+	return true;
+}
+
+static int Plug_InitHooks(void)
+{
+	// return true if registering of all hooks succeeds
+	return
+		Plug_Export("ExecuteCommand", Plug_ExecuteCommand)
+		&& Plug_Export("Tick", Plug_Tick);
+}
+
 int Plug_Init(int *args)
 {
-	if (Plug_Export("ExecuteCommand", Plug_ExecuteCommand))
+	// first of all, register hooks this plugins needs
+	if (Plug_InitHooks())
 	{
+		// proceed only if registering of all hooks succeeded
+
+		// call engine function to register this plugin's command
 		Cmd_AddCommand("dummyplugin_cmd");
+		// call engine function to register this plugin's variable
 		Cvar_Register("dummyplugin_cvar", "", 0, "");
 
 		return 1;
