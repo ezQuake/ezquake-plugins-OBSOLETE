@@ -115,12 +115,12 @@ EBUILTIN(void, Con_NameForNum, (int connum, char *conname, int connamelen));
 EBUILTIN(void, Sys_Error, (char *message));	//abort the entire engine.
 EBUILTIN(unsigned int, Sys_Milliseconds, ());
 
-EBUILTIN(int, Cmd_AddCommand, (char *buffer));	//abort the entire engine.
-EBUILTIN(void, Cmd_Args, (char *buffer, int bufsize));	//abort the entire engine.
-EBUILTIN(void, Cmd_Argv, (int argnum, char *buffer, int bufsize));	//abort the entire engine.
-EBUILTIN(int, Cmd_Argc, (void));	//abort the entire engine.
+EBUILTIN(int, Cmd_AddCommand, (char *buffer));
+EBUILTIN(void, Cmd_Args, (char *buffer, int bufsize));
+EBUILTIN(void, Cmd_Argv, (int argnum, char *buffer, int bufsize));
+EBUILTIN(int, Cmd_Argc, (void));
 EBUILTIN(void, Cmd_AddText, (char *text, qboolean insert));
-EBUILTIN(void, Cmd_Tokenize, (char *msg));	//abort the entire engine.
+EBUILTIN(void, Cmd_Tokenize, (char *msg));
 
 EBUILTIN(void, Cvar_SetString, (char *name, char *value));
 EBUILTIN(void, Cvar_SetFloat, (char *name, float value));

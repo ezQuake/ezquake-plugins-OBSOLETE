@@ -35,7 +35,7 @@ int Plug_ExecuteCommand(int *args)
 // handler of Tick event
 int Plug_Tick(int *args)
 {
-	currenttime = args[0];
+	int currenttime = args[0];
 	return true;
 }
 
