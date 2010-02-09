@@ -30,7 +30,7 @@ void LoadPics(void)
 	char buffer[256];
 
 //main bar (add cvars later)
-	con_chars = Draw_LoadImage("conchars", false);
+	con_chars = Draw_LoadImage("textures/charsets/povo5", false);
 	Cvar_GetString("cl_cursor", buffer, sizeof(buffer));
 	if (*buffer)
 		pic_cursor = Draw_LoadImage(buffer, false);
