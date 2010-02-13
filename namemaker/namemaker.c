@@ -16,7 +16,6 @@ int K_PAGEDOWN;
 int K_BACKSPACE;
 
 qhandle_t con_chars;
-qhandle_t pic_cursor;
 
 float drawscalex;
 float drawscaley;
@@ -28,14 +27,16 @@ unsigned int currenttime;
 void LoadPics(void)
 {
 	char buffer[256];
+	char conchars_name[256];
 
 //main bar (add cvars later)
-	con_chars = Draw_LoadImage("textures/charsets/povo5", false);
-	Cvar_GetString("cl_cursor", buffer, sizeof(buffer));
+	Cvar_GetString("gl_consolefont", buffer, sizeof(buffer));
+	snprintf(conchars_name, sizeof(conchars_name), "textures/charsets/%s", buffer);
+	
 	if (*buffer)
-		pic_cursor = Draw_LoadImage(buffer, false);
+		con_chars = Draw_LoadImage(conchars_name, false);
 	else
-		pic_cursor = NULL;
+		con_chars = Draw_LoadImage("textures/charsets/povo5", false);
 }
 
 void DrawChar(unsigned int c, int x, int y)
@@ -108,7 +109,6 @@ void KeyPress(int key, int mx, int my)
 int Plug_MenuEvent(int *args)
 {
 	int i;
-	float cbias;
 	drawscalex = vid.width/640.0f;
 	drawscaley = vid.height/480.0f;
 
@@ -127,9 +127,6 @@ int Plug_MenuEvent(int *args)
 			DrawChar(namebuffer[i], i*16, 0);
 		DrawChar(10 + (((currenttime/250)&1)==1), insertpos*16, 0);
 
-		cbias = Cvar_GetFloat("cl_cursorbias");
-		if (!pic_cursor || Draw_Image((float)(args[2]-cbias)*drawscalex, (float)(args[3]-cbias)*drawscaley, (float)32*drawscalex, (float)32*drawscaley, 0, 0, 1, 1, pic_cursor) <= 0)
-			DrawChar('+', args[2]-4, args[3]-4);
 		break;
 	case 1:	//keydown
 		KeyPress(args[1], args[2], args[3]);
@@ -159,6 +156,7 @@ int Plug_ExecuteCommand(int *args)
 	{
 		Menu_Control(1);
 		Cvar_GetString("name", (char*)namebuffer, sizeof(namebuffer));
+		LoadPics();
 		insertpos = strlen(namebuffer);
 		return 1;
 	}
@@ -190,8 +188,6 @@ int Plug_Init(int *args)
 		K_BACKSPACE		= Key_GetKeyCode("backspace");
 
 		Cmd_AddCommand("namemaker");
-
-		LoadPics();
 
 		return 1;
 	}
